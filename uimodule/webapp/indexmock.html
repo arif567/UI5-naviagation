@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Your SAPUI5 Application</title>
+    <script id="sap-ui-bootstrap"
+        src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_belize"
+        data-sap-ui-libs="sap.m"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-preload="async"
+        data-sap-ui-resourceroots='{
+            "sap.ui.demo.nav": "./"
+        }'>
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ui.require([
+                "sap/ui/core/ComponentContainer",
+                "sap/ui/demo/nav/localService/mockserver"
+            ], function (ComponentContainer, MockServer) {
+                // Initialize the MockServer
+                MockServer.init().then(function () {
+                    // Create the component container and start the app
+                    new ComponentContainer({
+                        name: "sap.ui.demo.nav",
+                        settings: {
+                            id: "app"
+                        }
+                    }).placeAt("content");
+                }).catch(function (error) {
+                    console.error(error);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body class="sapUiBody" role="application">
+    <div id="content"></div>
+</body>
+
+</html>
